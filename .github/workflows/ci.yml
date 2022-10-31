@@ -102,26 +102,24 @@ jobs:
 
       - name: Fstab Patching
         run: |
-            echo "system"
+            echo "vendor"
             echo "**************************************"
             ls -al
             echo "**************************************"
-            ls -al output/system.img
-            sudo mkdir system
-            sudo mount output/system.img system
-            sudo du -sb system
-            echo "===system==="
-            ls -l system
-            echo "===system/system==="
-            ls -l system/system
-            echo "===system/system/vendor==="
-            ls -l system/system/vendor
-            echo "===system/vendor/etc==="
-            ls -l system/vendor/etc
+            ls -al output/vendor.img
+            sudo mkdir vendor
+            sudo mount output/vendor.img vendor
+            sudo du -sb vendor
+            echo "===vendor==="
+            ls -l vendor
+            echo "===vendor/vendor==="
+            ls -l vendor/vendor
+            echo "===vendor/vendor/etc==="
+            ls -l vendor/vendor/etc
             echo "===over==="
-            cat system/vendor/etc/fstab.qcom
-            sudo cp -f system/vendor/etc/fstab.qcom fstab.qcom
-            fstab="system/vendor/etc/fstab.qcom"
+            cat vendor/vendor/etc/fstab.qcom
+            sudo cp -f vendor/vendor/etc/fstab.qcom fstab.qcom
+            fstab="vendor/vendor/etc/fstab.qcom"
             echo "**************************************"
             ls -al $fstab
             echo "**************************************"
@@ -212,16 +210,16 @@ jobs:
                 ls -al $fstab
                 echo "**************************************"
             fi
-            cat system/vendor/etc/fstab.qcom
-            sudo cp system/vendor/etc/fstab.qcom output/fstab.qcom
+            cat vendor/vendor/etc/fstab.qcom
+            sudo cp vendor/vendor/etc/fstab.qcom output/fstab.qcom
             echo "fstab修补中"
             echo "**************************************"
             diff fstab.qcom output/fstab.qcom || true
             echo "**************************************"
-            sudo du -sb system
-            sudo umount system
-            sudo rm -rf system
-            ls -al output/system.img
+            sudo du -sb vendor
+            sudo umount vendor
+            sudo rm -rf vendor
+            ls -al output/vendor.img
 
       - name: Patching boot
         run: |
@@ -331,6 +329,7 @@ jobs:
       - name: Packing
         run: |
           mv output/boot.img template/boot.img
+          mv output/vendor.img template/vendor.img
           mv output/system.img template/system.img
           cd template
           echo "**************************************"
