@@ -116,8 +116,8 @@ jobs:
             ls -l system/system
             echo "===system/system/vendor==="
             ls -l system/system/vendor
-            echo "===system/system/vendor/etc==="
-            ls -l system/system/vendor/etc
+            echo "===system/vendor/etc==="
+            ls -l system/vendor/etc
             echo "===over==="
             cat system/vendor/etc/fstab.qcom
             sudo cp -f system/vendor/etc/fstab.qcom fstab.qcom
