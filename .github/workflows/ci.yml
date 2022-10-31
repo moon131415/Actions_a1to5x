@@ -110,6 +110,15 @@ jobs:
             sudo mkdir system
             sudo mount output/system.img system
             sudo du -sb system
+            echo "===system==="
+            ls -l /system
+            echo "===system/system==="
+            ls -l /system/system
+            echo "===system/system/vendor==="
+            ls -l /system/system/vendor
+            echo "===system/system/vendor/etc==="
+            ls -l /system/system/vendor/etc
+            echo "===over==="
             cat system/system/vendor/etc/fstab.qcom
             sudo cp -f system/system/vendor/etc/fstab.qcom fstab.qcom
             fstab="system/system/vendor/etc/fstab.qcom"
