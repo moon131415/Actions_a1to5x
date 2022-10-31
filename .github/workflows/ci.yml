@@ -96,10 +96,8 @@ jobs:
       - name: Payload Extracting
         run: |
           echo "Payload Extracting"
-          unzip ${{ steps.var.outputs.filename }} payload.bin
+          unzip ${{ steps.var.outputs.filename }} -d output/
           rm -rf ${{ steps.var.outputs.filename }}
-          python3 update-payload-extractor/extract.py payload.bin --output_dir output/
-          rm -rf payload.bin
           ls
 
       - name: Fstab Patching
